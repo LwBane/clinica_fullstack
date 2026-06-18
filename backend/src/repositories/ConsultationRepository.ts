@@ -8,13 +8,13 @@ export class ConsultaRepository {
 
     async listarTodasConsultas(pagina?: number, limite?: number) {
         const existePaginacao = pagina! && limite!
-        if (!existePaginacao) return await prisma.exame.findMany()
-        const exames = await prisma.exame.findMany({
+        if (!existePaginacao) return await prisma.consulta.findMany()
+        const exames = await prisma.consulta.findMany({
             skip: (pagina - 1) * limite,
             take: limite
         })
 
-        const total = await prisma.exame.count();
+        const total = await prisma.consulta.count();
         const totalPaginas = Math.ceil(total / limite)
         return {
             exames,
