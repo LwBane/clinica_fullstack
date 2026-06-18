@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.ts'
+export type * from './prismaNamespace.ts'
 
 export const Decimal = runtime.Decimal
 
@@ -52,8 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Usuario: 'Usuario',
-  Exame: 'Exame',
-  Token: 'Token'
+  Token: 'Token',
+  Paciente: 'Paciente',
+  Prontuario: 'Prontuario',
+  Consulta: 'Consulta',
+  Exame: 'Exame'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -83,18 +86,6 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
-export const ExameScalarFieldEnum = {
-  id: 'id',
-  tipo_exame: 'tipo_exame',
-  valor: 'valor',
-  descricao: 'descricao',
-  resultado: 'resultado',
-  data_exame: 'data_exame'
-} as const
-
-export type ExameScalarFieldEnum = (typeof ExameScalarFieldEnum)[keyof typeof ExameScalarFieldEnum]
-
-
 export const TokenScalarFieldEnum = {
   id: 'id',
   token: 'token',
@@ -105,6 +96,56 @@ export const TokenScalarFieldEnum = {
 } as const
 
 export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof TokenScalarFieldEnum]
+
+
+export const PacienteScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  cpf: 'cpf',
+  telefone: 'telefone',
+  email: 'email',
+  data_nascimento: 'data_nascimento',
+  sexo: 'sexo',
+  responsavel: 'responsavel'
+} as const
+
+export type PacienteScalarFieldEnum = (typeof PacienteScalarFieldEnum)[keyof typeof PacienteScalarFieldEnum]
+
+
+export const ProntuarioScalarFieldEnum = {
+  id: 'id',
+  descricao: 'descricao',
+  data: 'data',
+  medico_responsavel_id: 'medico_responsavel_id',
+  paciente_id: 'paciente_id'
+} as const
+
+export type ProntuarioScalarFieldEnum = (typeof ProntuarioScalarFieldEnum)[keyof typeof ProntuarioScalarFieldEnum]
+
+
+export const ConsultaScalarFieldEnum = {
+  id: 'id',
+  motivo: 'motivo',
+  data_consulta: 'data_consulta',
+  observacoes: 'observacoes',
+  medico_responsavel_id: 'medico_responsavel_id',
+  paciente_id: 'paciente_id'
+} as const
+
+export type ConsultaScalarFieldEnum = (typeof ConsultaScalarFieldEnum)[keyof typeof ConsultaScalarFieldEnum]
+
+
+export const ExameScalarFieldEnum = {
+  id: 'id',
+  tipo_exame: 'tipo_exame',
+  valor: 'valor',
+  descricao: 'descricao',
+  resultado: 'resultado',
+  data_exame: 'data_exame',
+  pacienteId: 'pacienteId'
+} as const
+
+export type ExameScalarFieldEnum = (typeof ExameScalarFieldEnum)[keyof typeof ExameScalarFieldEnum]
 
 
 export const SortOrder = {

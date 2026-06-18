@@ -136,15 +136,9 @@
           "name": "Listar exame",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkZlbGlwZUBnbWFpbC5jb20iLCJub21lIjoiRmVsaXBlIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzc4MTkzODU5LCJleHAiOjE3NzgxOTc0NTl9.vV5PuvKA5v8sqltfJ4ivlkZvrq3b-VmDT3LDvSxjFco",
-                "type": "text"
-              }
-            ],
+            "header": [],
             "url": {
-              "raw": "http://localhost:3000/exames?pagina=1&limite=20",
+              "raw": "http://localhost:3000/exames",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -152,16 +146,6 @@
               "port": "3000",
               "path": [
                 "exames"
-              ],
-              "query": [
-                {
-                  "key": "pagina",
-                  "value": "1"
-                },
-                {
-                  "key": "limite",
-                  "value": "20"
-                }
               ]
             }
           },
