@@ -44,12 +44,18 @@ export class ConsultaRepository {
         });
     }
 
-    async atualizarConsulta(idConsulta: number, dadosParaAtualizar: Omit<Consulta, 'id'>) {
-        return await this.prisma.consulta.update({
-            data: { ...dadosParaAtualizar },
-            where: { id: idConsulta }
-        });
-    }
+async atualizarConsulta(idConsulta: number, dadosParaAtualizar: Omit<Consulta, 'id'>) {
+    return await this.prisma.consulta.update({
+        data: {
+            motivo: dadosParaAtualizar.motivo,
+            data_consulta: dadosParaAtualizar.data_consulta,
+            observacoes: dadosParaAtualizar.observacoes,
+            medico_responsavel_id: dadosParaAtualizar.medico_responsavel_id,
+            paciente_id: dadosParaAtualizar.paciente_id,
+        },
+        where: { id: idConsulta }
+    });
+}
 
     async deletarConsulta(idConsulta: number) {
         return await this.prisma.consulta.delete({
