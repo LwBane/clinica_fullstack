@@ -9,7 +9,7 @@ const Dashboard = () => {
         <div>
             <h1 className='text-xl font-bold text-cyan-800 mb-6'>Dashboard</h1>
 
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-2'>
+            <div className='flex gap-6 flex-wrap'>
                 <PatientsCounter />
                 <ConsultsCounter />
                 <ExamsCounter />
