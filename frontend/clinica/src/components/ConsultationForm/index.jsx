@@ -124,7 +124,7 @@ function ConsultationForm() {
 
 
     return (
-        <section className='p-6 text-gray-800'>
+        <section className='p-6 text-gray-800 dark:text-gray-200'>
             {/* campo de busca */}
 
             <div className='mb-6'>
@@ -136,7 +136,7 @@ function ConsultationForm() {
                     value={searchTerm}
                     onChange={handleSearchChange}
                     placeholder='Digite o nome ou o registro do paciente'
-                    className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                    className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400'
                 />
 
             </div>
@@ -148,7 +148,7 @@ function ConsultationForm() {
                     filteredPatients.map((patient) => (
                         <li
                             key={patient.id}
-                            className='p-4 border rounded-lg shadow-sm flex justify-between items-center hover:bg-gray-50 transition'
+                            className='p-4 border rounded-lg shadow-sm flex justify-between items-center hover:bg-gray-50 transition dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'
                         >
                             <div>
                                 <p className='text-sm'>
@@ -184,12 +184,12 @@ function ConsultationForm() {
                     selectedPatient && (
                         <>
                             {/* Título */}
-                            <h2 className='text-lg font-bold mb-4 text-cyan-700'>
+                            <h2 className='text-lg font-bold mb-4 text-cyan-700 dark:text-cyan-400'>
                                 Cadastrar consulta para {selectedPatient.fullName}
                             </h2>
 
                             {/* Dados básicos */}
-                            <div className='mb-4 text-sm text-gray-700'>
+                            <div className='mb-4 text-sm text-gray-700 dark:text-gray-300'>
                                 <p>
                                     <strong>Email:</strong> {selectedPatient.email}
                                 </p>
@@ -214,7 +214,7 @@ function ConsultationForm() {
                                         value={formData.reason}
                                         onChange={handleInputChange}
                                         required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                                     />
                                 </div>
 
@@ -232,7 +232,7 @@ function ConsultationForm() {
                                             value={formData.date}
                                             onChange={handleInputChange}
                                             required
-                                            className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                                            className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark'
                                         />
                                     </div>
                                     {/* Hora */}
@@ -248,7 +248,7 @@ function ConsultationForm() {
                                             value={formData.time}
                                             onChange={handleInputChange}
                                             required
-                                            className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                                            className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark'
                                         />
                                     </div>
 
@@ -268,7 +268,7 @@ function ConsultationForm() {
                                         rows={3}
                                         onChange={handleInputChange}
                                         required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none resize-none'
+                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none resize-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                                     />
                                 </div>
 
@@ -286,7 +286,7 @@ function ConsultationForm() {
                                         value={formData.medication}
                                         onChange={handleInputChange}
                                         required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                                     />
                                 </div>
 
@@ -305,7 +305,7 @@ function ConsultationForm() {
                                         value={formData.dosagePrecautions}
                                         onChange={handleInputChange}
                                         required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                                     />
                                 </div>
 
@@ -315,7 +315,7 @@ function ConsultationForm() {
                                     <button
                                         type='button'
                                         onClick={handleCloseModal}
-                                        className='px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition'
+                                        className='px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500'
                                     >
                                         Fechar
                                     </button>
