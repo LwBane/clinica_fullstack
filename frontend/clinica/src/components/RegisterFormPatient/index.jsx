@@ -3,6 +3,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 import { IMaskInput } from 'react-imask';
+import apiClient from '../../api/api'
 
 function RegisterFormPatient() {
     const [formData, setFormData] = useState({
@@ -151,7 +152,22 @@ function RegisterFormPatient() {
         setIsSaving(true)
 
         try {
-            await axios.post("http://localhost:3000/patients", formData)
+            // O model Paciente (Prisma) só tem: nome, cpf, telefone, email,
+            // data_nascimento, sexo e responsavel (opcional).
+            // Os demais campos do form (RG, estado civil, convênio, endereço etc.)
+            // continuam preenchíveis na tela, mas não existem no back ainda —
+            // por isso não são enviados aqui. Quando o schema for ampliado,
+            // é só incluir os campos correspondentes neste objeto.
+            const pacienteParaSalvar = {
+                nome: formData.fullName,
+                cpf: formData.cpf,
+                telefone: formData.phone,
+                email: formData.email,
+                data_nascimento: formData.birthdate,
+                sexo: formData.gender
+            }
+
+            await apiClient.post("/pacientes", pacienteParaSalvar)
 
             toast.success("Paciente cadastrado com sucesso!", {
                 autoClose: 2000,
@@ -188,10 +204,20 @@ function RegisterFormPatient() {
 
         } catch (error) {
             console.error(error)
-            toast.error("Erro ao Salvar os dados!", {
-                autoClose: 2000,
-                hideProgressBar: true
-            })
+
+            if (error.response) {
+                toast.error("Não foi possível salvar o paciente. Verifique os dados.", {
+                    autoClose: 2000,
+                    hideProgressBar: true
+                })
+            } else {
+                toast.error("Erro ao conectar com o servidor", {
+                    autoClose: 2000,
+                    hideProgressBar: true
+                })
+            }
+        } finally {
+            setIsSaving(false)
         }
     }
 

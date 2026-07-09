@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { FaUserAlt } from 'react-icons/fa'
 import { Link } from "react-router"
+import apiClient from "../../api/api"
 
 const PatientsList = () => {
     const [patients, setPatients] = useState([])
@@ -23,16 +23,17 @@ const PatientsList = () => {
     useEffect(() => {
         const fetchPatients = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/patients")
+                const response = await apiClient.get("/pacientes")
                 if (!response) return
 
                 const patientsData = response.data
 
                 // calcula a idade de cada paciente e armazena no estado
+                // obs: o back retorna "data_nascimento", não "birthdate"
 
                 const calculatedAges = {}
                 patientsData.forEach((patient) => {
-                    calculatedAges[patient.id] = calculateAge(patient.birthdate)
+                    calculatedAges[patient.id] = calculateAge(patient.data_nascimento)
                 })
                 setAges(calculatedAges)
                 setPatients(patientsData)
@@ -49,7 +50,7 @@ const PatientsList = () => {
     }
 
     const filteredPatients = patients.filter((patient) =>
-        [patient.fullName, patient.email, patient.phone]
+        [patient.nome, patient.email, patient.telefone]
             .join(" ")
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
@@ -94,15 +95,14 @@ const PatientsList = () => {
                                             <FaUserAlt size={20} />
                                         </div>
                                         <div>
-                                            <p className="font-semibold text-gray-800">{patient.fullName}</p>
+                                            <p className="font-semibold text-gray-800">{patient.nome}</p>
                                             <p className="text-sm text-gray-600">{patient.email}</p>
-                                            <p className="text-sm text-gray-600">{patient.phone}</p>
+                                            <p className="text-sm text-gray-600">{patient.telefone}</p>
                                         </div>
                                     </div>
 
                                     <div className="text-sm text-gray-600 mt-2 sm:mt-0 text-right">
-                                        <p><strong>Idade:</strong>{ages[patient.id] || "-"} anos</p>
-                                        <p><strong>Plano:</strong>{patient.healthInsurance || "-"}</p>
+                                        <p><strong>Idade:</strong> {ages[patient.id] || "-"} anos</p>
                                         <Link
                                             to={`/paciente/${patient.id}`}
                                             className="text-cyan-700 font-semibold hover:underline"

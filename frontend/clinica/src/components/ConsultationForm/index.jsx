@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { toast } from 'react-toastify'
+import apiClient from '../../api/api'
 
-//modal
-
+// modal
 import Modal from '../Modal'
 
-
+// Decodifica o payload do JWT sem precisar de nenhuma lib extra.
+// O token tem 3 partes separadas por ".", a do meio é o payload em base64.
+function decodeToken(token) {
+    try {
+        const payloadBase64 = token.split('.')[1]
+        const payloadJson = atob(payloadBase64)
+        return JSON.parse(payloadJson)
+    } catch (error) {
+        console.error('Erro ao decodificar token', error)
+        return null
+    }
+}
 
 function ConsultationForm() {
     const [searchTerm, setSearchTerm] = useState("")
@@ -20,8 +30,6 @@ function ConsultationForm() {
         date: "",
         time: "",
         description: "",
-        medication: "",
-        dosagePrecautions: "",
     })
 
 
@@ -30,10 +38,14 @@ function ConsultationForm() {
     useEffect(() => {
         const fetchPatients = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/patients")
+                const response = await apiClient.get("/pacientes")
                 setPatients(response.data)
             } catch (error) {
                 console.error("Erro ao obter dados dos pacientes", error)
+                toast.error("Erro ao carregar pacientes", {
+                    autoClose: 3000,
+                    hideProgressBar: true
+                })
             }
         }
         fetchPatients()
@@ -47,10 +59,12 @@ function ConsultationForm() {
     const handleSearchChange = (e) => setSearchTerm(e.target.value)
 
     //filtro dos pacientes
+    // obs: os campos do back são "nome" e "telefone" (não fullName/phone),
+    // e não existe campo de convênio (healthInsurance) no model Paciente
 
     const filteredPatients = patients.filter(
         (patient) =>
-            patient.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            patient.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
             patient.id.toString().includes(searchTerm)
     )
 
@@ -83,8 +97,6 @@ function ConsultationForm() {
             date: "",
             time: "",
             description: "",
-            medication: "",
-            dosagePrecautions: "",
         })
     }
 
@@ -94,15 +106,32 @@ function ConsultationForm() {
         e.preventDefault()
         if (!selectedPatient) return
 
+        const token = localStorage.getItem('accessToken')
+        const dadosToken = token ? decodeToken(token) : null
+
+        if (!dadosToken?.id) {
+            toast.error("Não foi possível identificar o médico logado. Faça login novamente.", {
+                autoClose: 3000,
+                hideProgressBar: true
+            })
+            return
+        }
+
         try {
             setIsSaving(true)
 
+            // junta date + time num único DateTime, que é o que o back espera em data_consulta
+            const dataConsulta = new Date(`${formData.date}T${formData.time}`)
+
             const dataToSave = {
-                patientId: selectedPatient.id,
-                ...formData
+                motivo: formData.reason,
+                data_consulta: dataConsulta.toISOString(),
+                observacoes: formData.description,
+                paciente_id: selectedPatient.id,
+                medico_responsavel_id: dadosToken.id
             }
 
-            await axios.post("http://localhost:3000/consults", dataToSave)
+            await apiClient.post("/consultas", dataToSave)
 
             toast.success("Consulta cadastrada com sucesso!", {
                 autoClose: 2000,
@@ -113,11 +142,21 @@ function ConsultationForm() {
             handleCloseModal()
 
         } catch (error) {
-            console.error("Erro ao cadastrar consulta!")
-            toast.error("Erro ao cadastrar consulta!", {
-                autoClose: 2000,
-                hideProgressBar: true
-            })
+            console.error("Erro ao cadastrar consulta!", error)
+
+            if (error.response) {
+                toast.error("Não foi possível salvar a consulta. Verifique os dados.", {
+                    autoClose: 3000,
+                    hideProgressBar: true
+                })
+            } else {
+                toast.error("Erro ao conectar com o servidor", {
+                    autoClose: 3000,
+                    hideProgressBar: true
+                })
+            }
+        } finally {
+            setIsSaving(false)
         }
     }
 
@@ -155,11 +194,7 @@ function ConsultationForm() {
                                     <strong>Registro:</strong> {patient.id}
                                 </p>
                                 <p className='text-sm'>
-                                    <strong>Nome:</strong> {patient.fullName}
-                                </p>
-
-                                <p className='text-sm'>
-                                    <strong>Convênio:</strong> {patient.healthInsurance}
+                                    <strong>Nome:</strong> {patient.nome}
                                 </p>
 
                             </div>
@@ -185,7 +220,7 @@ function ConsultationForm() {
                         <>
                             {/* Título */}
                             <h2 className='text-lg font-bold mb-4 text-cyan-700'>
-                                Cadastrar consulta para {selectedPatient.fullName}
+                                Cadastrar consulta para {selectedPatient.nome}
                             </h2>
 
                             {/* Dados básicos */}
@@ -194,7 +229,7 @@ function ConsultationForm() {
                                     <strong>Email:</strong> {selectedPatient.email}
                                 </p>
                                 <p>
-                                    <strong>Telefone:</strong> {selectedPatient.phone}
+                                    <strong>Telefone:</strong> {selectedPatient.telefone}
                                 </p>
                             </div>
 
@@ -269,43 +304,6 @@ function ConsultationForm() {
                                         onChange={handleInputChange}
                                         required
                                         className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none resize-none'
-                                    />
-                                </div>
-
-                                {/* Medicação receitada */}
-
-                                <div>
-                                    <label htmlFor='medication' className='block text-sm font-medium mb-1'>
-                                        Medicação receitada
-                                    </label>
-
-                                    <input
-                                        type='text'
-                                        name='medication'
-                                        id='medication'
-                                        value={formData.medication}
-                                        onChange={handleInputChange}
-                                        required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
-                                    />
-                                </div>
-
-
-                                {/* Dosagem e Precauções */}
-
-                                <div>
-                                    <label htmlFor='dosagePrecautions' className='block text-sm font-medium mb-1'>
-                                        Dosagem e Precauções
-                                    </label>
-
-                                    <input
-                                        type='text'
-                                        name='dosagePrecautions'
-                                        id='dosagePrecautions'
-                                        value={formData.dosagePrecautions}
-                                        onChange={handleInputChange}
-                                        required
-                                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
                                     />
                                 </div>
 
