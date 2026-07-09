@@ -120,7 +120,7 @@ const ExamsForm = () => {
   };
 
   return (
-    <section className="p-6 text-gray-800">
+    <section className="p-6 text-gray-800 dark:text-gray-200">
       {/* Campo de busca */}
       <div className="mb-6">
         <label className="block text-sm font-semibold mb-2">
@@ -130,7 +130,7 @@ const ExamsForm = () => {
           type="text"
           onChange={handleSearchChange}
           placeholder="Digite o nome ou registro do paciente"
-          className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none"
+          className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400"
         />
       </div>
 
@@ -139,7 +139,7 @@ const ExamsForm = () => {
         {filteredPatients.map((patient) => (
           <li
             key={patient.id}
-            className="p-4 border rounded-lg shadow-sm flex justify-between items-center hover:bg-gray-50 transition"
+            className="p-4 border rounded-lg shadow-sm flex justify-between items-center hover:bg-gray-50 transition dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
             <div>
               <p className="text-sm">
@@ -167,7 +167,7 @@ const ExamsForm = () => {
               Cadastrar Exame para {selectedPatient.nome}
             </h2>
 
-            <div className="mb-4 text-sm text-gray-700">
+            <div className="mb-4 text-sm text-gray-700 dark:text-gray-300">
               <p>
                 <strong>Email:</strong> {selectedPatient.email}
               </p>
@@ -206,7 +206,7 @@ const ExamsForm = () => {
                     value={examData.valor}
                     onChange={handleInputChange}
                     required
-                    className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none"
+                    className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark"
                   />
                 </div>
                 <div>
@@ -219,7 +219,7 @@ const ExamsForm = () => {
                     value={examData.data_exame}
                     onChange={handleInputChange}
                     required
-                    className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none"
+                    className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark"
                   />
                 </div>
               </div>
@@ -252,7 +252,7 @@ const ExamsForm = () => {
                   required
                   minLength={15}
                   maxLength={1000}
-                  className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none"
+                  className="w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
                 />
               </div>
 
@@ -260,7 +260,7 @@ const ExamsForm = () => {
                 <button
                   type="button"
                   onClick={handleCloseModal}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition"
+                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500"
                 >
                   Cancelar
                 </button>

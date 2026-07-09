@@ -225,7 +225,7 @@ function RegisterFormPatient() {
     return (
         <form
             onSubmit={handleSubmit}
-            className='space-y-6 text-gray-800'
+            className='space-y-6 text-gray-800 dark:text-gray-200'
             autoComplete='off'
         >
 
@@ -240,7 +240,7 @@ function RegisterFormPatient() {
                         value={formData.fullName}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -255,7 +255,7 @@ function RegisterFormPatient() {
                         value={formData.gender}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     >
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
@@ -279,7 +279,7 @@ function RegisterFormPatient() {
                         onBlur={validadeDate}
                         max={maxBirthDate}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark'
                     />
                 </fieldset>
 
@@ -294,7 +294,7 @@ function RegisterFormPatient() {
                         id='cpf'
                         value={formData.cpf}
                         onAccept={(value) => setFormData((prev) => ({ ...prev, cpf: value }))}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -309,7 +309,7 @@ function RegisterFormPatient() {
                         value={formData.rg}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -325,7 +325,7 @@ function RegisterFormPatient() {
                         value={formData.maritalStatus}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     >
                         <option value="">Selecione</option>
                         <option value="solteiro(a)">Solteiro(a)</option>
@@ -347,7 +347,7 @@ function RegisterFormPatient() {
                         id='phone'
                         value={formData.phone}
                         onAccept={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -361,7 +361,7 @@ function RegisterFormPatient() {
                         id='emergencyContact'
                         value={formData.emergencyContact}
                         onAccept={(value) => setFormData((prev) => ({ ...prev, emergencyContact: value }))}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -376,7 +376,7 @@ function RegisterFormPatient() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -391,7 +391,7 @@ function RegisterFormPatient() {
                         value={formData.birthplace}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -405,7 +405,7 @@ function RegisterFormPatient() {
                         id='allergies'
                         value={formData.allergies}
                         onChange={handleInputChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -419,7 +419,7 @@ function RegisterFormPatient() {
                         id='specialCare'
                         value={formData.specialCare}
                         onChange={handleInputChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -433,7 +433,7 @@ function RegisterFormPatient() {
                         id='healthInsurance'
                         value={formData.healthInsurance}
                         onChange={handleInputChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -447,7 +447,7 @@ function RegisterFormPatient() {
                         id='insuranceNumber'
                         value={formData.insuranceNumber}
                         onChange={handleInputChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -461,7 +461,7 @@ function RegisterFormPatient() {
                         id='insuranceValidity'
                         value={formData.insuranceValidity}
                         onChange={handleInputChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark'
                     />
                 </fieldset>
 
@@ -476,7 +476,7 @@ function RegisterFormPatient() {
                         value={formData.address.cep}
                         onBlur={handleCepBlur}
                         onAccept={(value) => handleAddressChange({ target: { name: "cep", value } })}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -490,7 +490,7 @@ function RegisterFormPatient() {
                         id='street'
                         value={formData.address.street}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -504,7 +504,7 @@ function RegisterFormPatient() {
                         id='number'
                         value={formData.address.number}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -518,7 +518,7 @@ function RegisterFormPatient() {
                         id='complement'
                         value={formData.address.complement}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -533,7 +533,7 @@ function RegisterFormPatient() {
                         id='reference'
                         value={formData.address.reference}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -547,7 +547,7 @@ function RegisterFormPatient() {
                         id='neighborhood'
                         value={formData.address.neighborhood}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -560,7 +560,7 @@ function RegisterFormPatient() {
                         id='city'
                         value={formData.address.city}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -574,7 +574,7 @@ function RegisterFormPatient() {
                         id='state'
                         value={formData.address.state}
                         onChange={handleAddressChange}
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 

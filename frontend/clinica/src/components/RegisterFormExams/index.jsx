@@ -69,7 +69,7 @@ function RegisterFormExams() {
     return (
         <form
             onSubmit={handleSubmit}
-            className='space-y-6 text-gray-800'
+            className='space-y-6 text-gray-800 dark:text-gray-200'
             autoComplete='off'
         >
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -84,7 +84,7 @@ function RegisterFormExams() {
                         value={formData.tipo_exame}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200'
                     />
                 </fieldset>
 
@@ -114,7 +114,7 @@ function RegisterFormExams() {
                         value={formData.data_exame}
                         onChange={handleInputChange}
                         required
-                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
+                        className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:scheme-dark'
                     />
                 </fieldset>
 
